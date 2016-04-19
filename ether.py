@@ -45,18 +45,18 @@ for region in boto.ec2.regions():
 
         if sched != None:
           # match and parse the start portion of the tag
-          start_sched = re.search('start: \(((?:[1-9]?\d|\*)\s*(?:(?:[\/-][1-9]?\d)|(?:,[1-9]?\d)+)?\s*){5}\)', sched)
-          if start_sched:
-            start_sched = start_sched.group(0)
-            start_sched[start_sched.find("(")+1:start_sched.find(")")]
+          start_tag = re.search('start: \(((?:[1-9]?\d|\*)\s*(?:(?:[\/-][1-9]?\d)|(?:,[1-9]?\d)+)?\s*){5}\)', sched)
+          if start_tag:
+            start_sched = start_tag.group(0)
+            start_sched = start_sched[start_sched.find("(")+1:start_sched.find(")")]
           else:
             start_sched = "0 7 * * *"
 
           # match and parse the stop portion of the tag
-          stop_sched = re.search('stop: \(((?:[1-9]?\d|\*)\s*(?:(?:[\/-][1-9]?\d)|(?:,[1-9]?\d)+)?\s*){5}\)', sched)
-          if stop_sched:
-            stop_sched = start_sched.group(0)
-            stop_sched[stop_sched.find("(")+1:stop_sched.find(")")]
+          stop_tag = re.search('stop: \(((?:[1-9]?\d|\*)\s*(?:(?:[\/-][1-9]?\d)|(?:,[1-9]?\d)+)?\s*){5}\)', sched)
+          if stop_tag:
+            stop_sched = stop_tag.group(0)
+            stop_sched = stop_sched[stop_sched.find("(")+1:stop_sched.find(")")]
           else:
             stop_sched = "0 19 * * *"
 
