@@ -41,7 +41,7 @@ for region in boto.ec2.regions():
         # check ether tag
         sched = inst.tags['ether'] if 'ether' in inst.tags else None
 
-        print "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (region.name, name, inst.id, inst.instance_type, inst.launch_time, state, start_sched, stop_sched, inst.tags)
+        print "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (region.name, name, inst.id, inst.instance_type, inst.launch_time, state, sched, stop_sched, inst.tags)
 
         if sched != None:
           # match and parse the start portion of the tag
